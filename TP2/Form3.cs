@@ -98,7 +98,7 @@ namespace TP2
                     int.Parse(txtCabañasHabitaciones.Text),
                     int.Parse(txtCabañasBaños.Text));
                 //FGM_ Lo ve palo esto?
-                 manager.GuardarDatosCabaña();
+//                 manager.GuardarDatosCabaña();
                  dataGridAdmin.Rows.Clear();
                  CargarDataGridAdmin();
                  LimpiarInputs();
@@ -124,7 +124,7 @@ namespace TP2
                 {
                     if (!manager.getMiAgencia().estaAlojamiento(int.Parse(txtHotelCodigo.Text)))
                     {
-                        GuardarDatosHoteles();
+//                        GuardarDatosHoteles();
                         manager.agregarHotel(
                             int.Parse(txtHotelCodigo.Text),
                             txtHotelNombre.Text,
@@ -156,19 +156,19 @@ namespace TP2
 
         }
 
-        private void GuardarDatosHoteles()
-        {
-            try
-            {
-                manager.GuardarDatosHoteles();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Hubo un error, por favor intenta cargando los datos nuevamente.");
-            }
-
-        }
-
+        //private void GuardarDatosHoteles()
+        //{
+        //    try
+        //    {
+        //        manager.GuardarDatosHoteles();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show("Hubo un error, por favor intenta cargando los datos nuevamente.");
+        //    }
+        //
+        //}
+        //
         private void button8_Click(object sender, EventArgs e)
         {
         }
@@ -193,7 +193,7 @@ namespace TP2
                     checkABMUsuariosAdmin.Checked,
                     checkABMUsuariosBloqueado.Checked);
                 //FGM_ Lo ve palo a caso?
-                manager.GuardarDatosUsuarios();
+              //  manager.GuardarDatosUsuarios();
                 MessageBox.Show("Usuario generado con exito");
                 LimpiarInputsABMUsuarios();
                 btnCrearUsr.Visible = false;
@@ -1650,7 +1650,7 @@ namespace TP2
                     (precio * int.Parse(labelDiasTotales.Text))
                     );
                 //FGM_ Este metodo lo revisa palo?
-                manager.GuardarReservas();
+                //manager.GuardarReservas();
 
                 dataGridReservas.Rows.Clear();
                 CargarDataGridReservas();
@@ -2422,7 +2422,7 @@ namespace TP2
                         int.Parse(txtCabañasBaños.Text));
                 }
                 //FGM_ PALOMA VES ESTO?
-                manager.GuardarDatosCabaña();
+               // manager.GuardarDatosCabaña();
                 MessageBox.Show("Se ha editado la cabaña con éxito");
                 dataGridAdmin.Rows.Clear();
                 CargarDataGridAdmin();
@@ -2495,7 +2495,7 @@ namespace TP2
             try
             {
                 manager.eliminarCabania(this.codigo);
-                manager.GuardarDatosCabaña();
+                //manager.GuardarDatosCabaña();
                 dataGridAdmin.Rows.Clear();
                 CargarDataGridAdmin();
                 MessageBox.Show("Se ha borrado el alojamiento con éxito");
@@ -2516,7 +2516,7 @@ namespace TP2
             try
             {
                 manager.eliminarHotel(this.codigo);
-                manager.GuardarDatosHoteles();
+               // manager.GuardarDatosHoteles();
                 MessageBox.Show("Se ha borrado el alojamiento con éxito");
                 dataGridAdmin.Rows.Clear();
                 CargarDataGridAdmin();
@@ -2545,7 +2545,7 @@ namespace TP2
                             int.Parse(txtHotelPrecioPersona.Text));
                 }
                 //FGM_ PALOMA PODES VER ESTO POR FAVOR?
-                manager.GuardarDatosHoteles();
+                //manager.GuardarDatosHoteles();
                 MessageBox.Show("Se ha editado el hotel con éxito");
                 dataGridAdmin.Rows.Clear();
                 CargarDataGridAdmin();
@@ -2603,7 +2603,7 @@ namespace TP2
 
             MessageBox.Show("Usuario editado correctamente");
             //FGM_ PALOMA, VES ESTE METODO? O TE TIRO VINAGRE?
-            manager.GuardarDatosUsuarios();
+           // manager.GuardarDatosUsuarios();
             LimpiarInputsABMUsuarios();
             CargarDataGridABMUsuarios();
         }

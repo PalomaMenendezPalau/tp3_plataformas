@@ -83,7 +83,7 @@ namespace TP2
                         checkBoxRegistrarseAdmin.Checked,
                         false);
 
-                    miAgencia.GuardarDatosUsuarios();
+                    //miAgencia.GuardarDatosUsuarios();
                     MessageBox.Show("Usuario generado con exito");
                     panelRegistrarse.Visible = false;
                     LimpiarInputs();

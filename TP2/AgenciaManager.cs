@@ -45,7 +45,7 @@ namespace TP2
                 SqlCommand command1 = new SqlCommand(queryString_cabanias, connection);
                 SqlCommand command2 = new SqlCommand(queryString_users, connection);
                 SqlCommand command3 = new SqlCommand(queryString_reserva, connection);
-
+                
                 try
                 {
                     //abro mi conexion
@@ -1340,7 +1340,7 @@ namespace TP2
                         if (intentos == 3)
                         {
                             u.setBloqueado(true);
-                             GuardarDatosUsuarios();  // hacer update a usuarios para bloquear
+                            //GuardarDatosUsuarios();  // hacer update a usuarios para bloquear
                             intentos = 0;
                             mensaje = "Se bloqueo el usuario";
                         }
