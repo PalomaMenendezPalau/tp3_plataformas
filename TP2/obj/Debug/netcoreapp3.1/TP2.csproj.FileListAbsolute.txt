@@ -1,0 +1,264 @@
+C:\Users\Admin\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Admin\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Admin\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Admin\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Admin\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Admin\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Admin\Downloads\TP2\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Admin\Downloads\TP2\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Admin\Downloads\TP2\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Admin\Downloads\TP2\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Admin\Downloads\TP2\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\Downloads\TP2\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csprojAssemblyReference.cache
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Admin\Downloads\TP2\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\Desktop\TPFinalizacion\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\Desktop\TPFinalizacion\TP2-AdminOk\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.csprojAssemblyReference.cache
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\Desktop\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.csprojAssemblyReference.cache
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\TP2-AdminCompleto\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Juanma\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Juanma\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Juanma\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Juanma\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Juanma\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csprojAssemblyReference.cache
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Admin\Downloads\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Admin\Downloads\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Admin\Downloads\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Admin\Downloads\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Admin\Downloads\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\Downloads\TP2\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csprojAssemblyReference.cache
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Admin\Downloads\TP2\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+\\Mac\Home\Desktop\TP2 2\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+\\Mac\Home\Desktop\TP2 2\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+\\Mac\Home\Desktop\TP2 2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+\\Mac\Home\Desktop\TP2 2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+\\Mac\Home\Desktop\TP2 2\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+\\Mac\Home\Desktop\TP2 2\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.AssemblyReference.cache
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+\\Mac\Home\Desktop\TP2 2\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.AssemblyReference.cache
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\Grupo 5 - TP2\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.AssemblyReference.cache
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+\\Mac\Home\Desktop\TP2_JuanmaVersion\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.AssemblyReference.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Actual\Grupo 5 - TP2JuanmaVersion\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Juanma\source\repos\Consolidado\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Juanma\source\repos\Consolidado\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Juanma\source\repos\Consolidado\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Juanma\source\repos\Consolidado\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Juanma\source\repos\Consolidado\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\Consolidado\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.AssemblyReference.cache
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\Consolidado\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.AssemblyReference.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\Juanma\source\repos\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.exe
+C:\Users\Juanma\source\repos\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.deps.json
+C:\Users\Juanma\source\repos\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.json
+C:\Users\Juanma\source\repos\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.runtimeconfig.dev.json
+C:\Users\Juanma\source\repos\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\Juanma0614\TP2\bin\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.AssemblyReference.cache
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.Form1.resources
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.Form2.resources
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.Form3.resources
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.Properties.Resources.resources
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.ReservasClientes.resources
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.GenerateResource.cache
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfoInputs.cache
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.AssemblyInfo.cs
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.csproj.CoreCompileInputs.cache
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.dll
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.pdb
+C:\Users\Juanma\source\repos\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.genruntimeconfig.cache
+C:\Users\franco.mastrantonio\Documents\Proyectos VS\Juanma0614\TP2\obj\Debug\netcoreapp3.1\TP2.ReservasClientes.resources

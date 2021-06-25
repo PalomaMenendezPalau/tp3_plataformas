@@ -1,0 +1,3 @@
+7,SheratonV2,CABA,Retiro,4,4,True,1500
+2,Sheraton,CABA,Retiro,5,2,True,5000
+12,ElTesting,Tigre,Nosaben,5,2,True,3000

@@ -1,0 +1,4 @@
+3,Los Rosales,Tigre,Carupa,1,2,False,2800,4,2
+6,Rosalo,CABA,1114,1,4,True,1000,2,2
+1,El sueño,Mercedes,S/B,4,2,True,2500,1,1
+4,La posada,Tigre,Delta,4,10,True,4000,4,5
