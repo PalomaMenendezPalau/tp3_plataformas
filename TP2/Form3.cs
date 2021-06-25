@@ -86,7 +86,7 @@ namespace TP2
             {
                 if (!manager.getMiAgencia().estaAlojamiento(int.Parse(txtCabañaCodigo.Text))) { 
 
-                manager.nuevaCabania(
+                manager.agregarCabania(
                     int.Parse(txtCabañaCodigo.Text),
                     txtCabañaNombre.Text,
                     txtCabañaCiudad.Text,
@@ -97,7 +97,7 @@ namespace TP2
                     int.Parse(txtCabañaPrecioDia.Text),
                     int.Parse(txtCabañasHabitaciones.Text),
                     int.Parse(txtCabañasBaños.Text));
-                
+                //FGM_ Lo ve palo esto?
                  manager.GuardarDatosCabaña();
                  dataGridAdmin.Rows.Clear();
                  CargarDataGridAdmin();
@@ -125,7 +125,7 @@ namespace TP2
                     if (!manager.getMiAgencia().estaAlojamiento(int.Parse(txtHotelCodigo.Text)))
                     {
                         GuardarDatosHoteles();
-                        manager.nuevoHotel(
+                        manager.agregarHotel(
                             int.Parse(txtHotelCodigo.Text),
                             txtHotelNombre.Text,
                             txtHotelCiudad.Text,
@@ -192,7 +192,7 @@ namespace TP2
                     txtABMUsuariosPass.Text,
                     checkABMUsuariosAdmin.Checked,
                     checkABMUsuariosBloqueado.Checked);
-
+                //FGM_ Lo ve palo a caso?
                 manager.GuardarDatosUsuarios();
                 MessageBox.Show("Usuario generado con exito");
                 LimpiarInputsABMUsuarios();
@@ -1641,14 +1641,15 @@ namespace TP2
             if (dataGridUser.Columns[e.ColumnIndex].Name == "Reservar")
             {
                 
-                manager.NuevaReserva(
+                manager.agregarReserva(
                     manager.getMisReservas().Count+1,
                     dateTimeIda.Value,
                     dateTimeVuelta.Value,
-                    codigoAloj,
-                    int.Parse(userLog[0]),
+                    manager.getMiAgencia().getAlojamientos()[dataGridUser.CurrentCell.RowIndex],
+                    manager.buscarUsuarios(int.Parse(userLog[0])),
                     (precio * int.Parse(labelDiasTotales.Text))
                     );
+                //FGM_ Este metodo lo revisa palo?
                 manager.GuardarReservas();
 
                 dataGridReservas.Rows.Clear();
@@ -2408,7 +2409,8 @@ namespace TP2
                 foreach (Alojamiento a in manager.getMiAgencia().getAlojamientos())
                 {
                     if (this.codigo == a.getCodigo())
-                        manager.modificarAlojamiento(a, new Cabaña(codigo,
+
+                        manager.modificarCabanias(codigo,
                         txtCabañaNombre.Text,
                         txtCabañaCiudad.Text,
                         txtCabañaBarrio.Text,
@@ -2417,8 +2419,9 @@ namespace TP2
                         checkCabañaTv.Checked,
                         int.Parse(txtCabañaPrecioDia.Text),
                         int.Parse(txtCabañasHabitaciones.Text),
-                        int.Parse(txtCabañasBaños.Text)));
+                        int.Parse(txtCabañasBaños.Text));
                 }
+                //FGM_ PALOMA VES ESTO?
                 manager.GuardarDatosCabaña();
                 MessageBox.Show("Se ha editado la cabaña con éxito");
                 dataGridAdmin.Rows.Clear();
@@ -2491,7 +2494,7 @@ namespace TP2
         {
             try
             {
-                manager.quitarAlojamiento(this.codigo);
+                manager.eliminarCabania(this.codigo);
                 manager.GuardarDatosCabaña();
                 dataGridAdmin.Rows.Clear();
                 CargarDataGridAdmin();
@@ -2512,7 +2515,7 @@ namespace TP2
         {
             try
             {
-                manager.quitarAlojamiento(this.codigo);
+                manager.eliminarHotel(this.codigo);
                 manager.GuardarDatosHoteles();
                 MessageBox.Show("Se ha borrado el alojamiento con éxito");
                 dataGridAdmin.Rows.Clear();
@@ -2532,15 +2535,16 @@ namespace TP2
                 foreach (Alojamiento a in manager.getMiAgencia().getAlojamientos())
                 {
                     if (this.codigo == a.getCodigo())
-                        manager.modificarAlojamiento(a, new Hotel(codigo,
+                        manager.modificarHoteles(codigo,
                             txtHotelNombre.Text,
                             txtHotelCiudad.Text,
                             txtHotelBarrio.Text,
                             int.Parse(numHotelEstrellas.Value.ToString()),
                             int.Parse(txtHotelCantPersonas.Text),
                             checkHotelTv.Checked,
-                            int.Parse(txtHotelPrecioPersona.Text)));
+                            int.Parse(txtHotelPrecioPersona.Text));
                 }
+                //FGM_ PALOMA PODES VER ESTO POR FAVOR?
                 manager.GuardarDatosHoteles();
                 MessageBox.Show("Se ha editado el hotel con éxito");
                 dataGridAdmin.Rows.Clear();
@@ -2598,6 +2602,7 @@ namespace TP2
                 checkABMUsuariosBloqueado.Checked);
 
             MessageBox.Show("Usuario editado correctamente");
+            //FGM_ PALOMA, VES ESTE METODO? O TE TIRO VINAGRE?
             manager.GuardarDatosUsuarios();
             LimpiarInputsABMUsuarios();
             CargarDataGridABMUsuarios();

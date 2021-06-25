@@ -307,9 +307,17 @@ namespace TP2
                 command.Parameters["@fdesde"].Value = FDesde;
                 command.Parameters["@fhasta"].Value = FHasta;
                 command.Parameters["@usuario"].Value = Persona.getDni();
-                command.Parameters["@cabania"].Value = Propiedad.getCodigo();
-                command.Parameters["@hotel"].Value = //nisabe;
-                command.Parameters["@hotel"].Value = Precio;
+                if (Propiedad is Hotel)
+                {
+                    command.Parameters["@cabania"].Value = null;
+                    command.Parameters["@hotel"].Value = Propiedad.getCodigo();
+                }
+                else
+                {
+                    command.Parameters["@cabania"].Value = Propiedad.getCodigo();
+                    command.Parameters["@hotel"].Value = null;
+                }
+                command.Parameters["@precio"].Value = Precio;
                 try
                 {
                     connection.Open();
@@ -322,11 +330,12 @@ namespace TP2
                     return false;
                 }
             }
+
             if (resultadoQuery == 1)
             {
                 //Ahora sí lo agrego en la lista
-                Usuarios nuevo = new Usuarios(Dni, Nombre, Mail, Password, EsAdmin, Bloqueado);
-                misUsuarios.Add(nuevo);
+                Reservas nuevo = new Reservas(ID, FDesde, FHasta, Propiedad, Persona, Precio);
+                misReservas.Add(nuevo);
                 return true;
             }
             else
@@ -617,7 +626,8 @@ namespace TP2
             int resultadoQuery;
             string connectionString = Properties.Resources.connectionString;
             string queryString = "UPDATE [dbo].[RESERVAS] SET FECHA_DESDE=@fdesde, FECHA_HASTA=@fhasta" +
-                ",CODIGO_CABANIA=@cabania,CODIGO_HOTEL=@hotel, PRECIO_TOTAL = @precio WHERE ID=@id;";
+               //FGM_ FALTA EL CODIGO DE PERSONA, ES EL DNI?
+               ",CODIGO_CABANIA=@cabania,CODIGO_HOTEL=@hotel, PRECIO_TOTAL = @precio WHERE ID=@id;";
             using (SqlConnection connection =
                 new SqlConnection(connectionString))
             {
@@ -627,13 +637,21 @@ namespace TP2
                 command.Parameters.Add(new SqlParameter("@fdesde", SqlDbType.DateTime));
                 command.Parameters.Add(new SqlParameter("@cabania", SqlDbType.Int));
                 command.Parameters.Add(new SqlParameter("@hotel", SqlDbType.Int));
+                //FGM_ falta usuario, como figura en la base de datos?
                 command.Parameters.Add(new SqlParameter("@precio", SqlDbType.Float));
                 command.Parameters["@id"].Value = ID;
                 command.Parameters["@fdesde"].Value = FDesde;
                 command.Parameters["@fhasta"].Value = FHasta;
-                command.Parameters["@cabania"].Value = //Alojamiento//;
-                command.Parameters["@hotel"].Value = //Alojamiento/;
-                command.Parameters["@usuario"].Value = //USUARIOO//;
+                if (Propiedad is Hotel) {
+                    command.Parameters["@cabania"].Value = null;
+                    command.Parameters["@hotel"].Value = Propiedad.getCodigo();
+                        }
+                else
+                {
+                    command.Parameters["@cabania"].Value = Propiedad.getCodigo();
+                    command.Parameters["@hotel"].Value = null;
+                }
+                command.Parameters["@usuario"].Value = Persona.getDni();
                 command.Parameters["@precio"].Value = Precio;
                 try
                 {
@@ -652,15 +670,17 @@ namespace TP2
                 try
                 {
                     //Ahora sí lo MODIFICO en la lista
-                    for (int i = 0; i < misReservas.Count; i++)
-                        if (misReservas[i].getID() == ID)
-                        {
-                            misReservas[i].setFDesde(FDesde);
-                            misReservas[i].setFHasta(FHasta);
-                            misReservas[i].setPersona(Persona);
-                            misReservas[i].setPropiedad(Propiedad);
-                            misReservas[i].setPrecio(Precio);
+                    foreach(Reservas r in misReservas)
+                    { 
+                        if (r.getID() == ID)
+                        {   
+                            r.setFDesde(FDesde);
+                            r.setFHasta(FHasta);
+                            r.setPersona(Persona);
+                            r.setPropiedad(Propiedad);
+                            r.setPrecio(Precio);
                         }
+                    }
                     return true;
                 }
                 catch (Exception)
@@ -873,7 +893,14 @@ namespace TP2
 
                 return false;
             }
-        }
+            }
+
+            public Usuarios buscarUsuarios(int dniUsuario)
+            {
+                return misUsuarios.Find(user => user.getDni() == dniUsuario);
+            }
+
+        
         /*
         //agrego alojamientosss
 
@@ -1061,10 +1088,6 @@ namespace TP2
             misReservas.Add(new Reservas(id, fechaIda, fechaVuelta, codigoAloj, dniUser, precioTotal));
 
             return true;
-        }
-        public Usuarios buscarUsuarios(int dniUsuario)
-        {
-            return misUsuarios.Find(user => user.getDni() == dniUsuario);
         }
         public bool eliminarReserva(int id){
 
