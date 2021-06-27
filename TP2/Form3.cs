@@ -217,6 +217,7 @@ namespace TP2
         }
         private void CargarDTGAdminHoteles(List<Hotel> hoteles)
         {
+            
             foreach (Hotel h in hoteles)
             {
                 string aTv;
@@ -244,6 +245,7 @@ namespace TP2
         }
         private void CargarDataGridUser(List<Hotel> hoteles, List<Cabaña> cabañas)
         {
+            dataGridUser.Rows.Clear();
             CargarDTGUserCabañas(cabañas);
             CargarDTGUserHoteles(hoteles);
         }
@@ -280,6 +282,7 @@ namespace TP2
                         h.getPrecioPorPersona()));
                 }
             }
+            dataGridUser.Rows.Clear();
             CargarDTGUserCabañas(cabañas);
             CargarDTGUserHoteles(hoteles);
         }
@@ -302,6 +305,7 @@ namespace TP2
                         h.getPrecioPorPersona()));
                 }
             }
+            dataGridUser.Rows.Clear();
             CargarDTGUserHoteles(hoteles);
         }
 
@@ -325,6 +329,7 @@ namespace TP2
                         c.getBaños()));
                 }
             }
+            dataGridUser.Rows.Clear();
             CargarDTGUserCabañas(cabañas);
         }
 
