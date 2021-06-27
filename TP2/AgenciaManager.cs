@@ -35,7 +35,7 @@ namespace TP2
             string queryString_hotel = "SELECT * FROM dbo.HOTELES";
             string queryString_cabanias = "SELECT * FROM dbo.CABANIAS";
             string queryString_users = "SELECT * FROM dbo.USUARIOS";
-            string queryString_reserva = "SELECT * FROM dbo.RESEVAS";
+            string queryString_reserva = "SELECT * FROM dbo.RESERVAS";
 
             //creo la conexion SQL CON UN USING para liberar recursos.
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -50,34 +50,92 @@ namespace TP2
                 {
                     //abro mi conexion
                     connection.Open();
-                    ///DATA READER OBTIENE LA INFO DE MI CONSULTA
-                    SqlDataReader reader_hotel = command1.ExecuteReader();
-                    SqlDataReader reader_cabanias = command1.ExecuteReader();
-                    SqlDataReader reader_users = command2.ExecuteReader();
-                    SqlDataReader reader_reserva = command3.ExecuteReader();
+
                     Hotel aux_hotel;
                     Cabaña aux_cabanias;
                     Usuarios aux_users;
                     Reservas aux_reserva;
 
-                    //por cada fila creo 
-
-                    while (reader_hotel.Read() || reader_cabanias.Read() || reader_users.Read()  /*|| reader_reserva.Read() */)
+                    /*************************
+                                 HOTELES*/
+                    SqlDataReader reader_hotel = command.ExecuteReader();
+                    while (reader_hotel.Read())
                     {
-
-                        aux_hotel = new Hotel(reader_hotel.GetInt32(0), reader_hotel.GetString(1), reader_hotel.GetString(2), reader_hotel.GetString(3),
-                            reader_hotel.GetInt32(4), reader_hotel.GetInt32(5), reader_hotel.GetBoolean(6), reader_hotel.GetFloat(7));
-                        misHoteles.Add(aux_hotel);
-
-                        aux_cabanias = new Cabaña(reader_cabanias.GetInt32(0), reader_cabanias.GetString(1), reader_cabanias.GetString(2), reader_hotel.GetString(3),
-                           reader_cabanias.GetInt32(4), reader_cabanias.GetInt32(5), reader_cabanias.GetBoolean(6), reader_cabanias.GetFloat(7),
-                           reader_cabanias.GetInt32(8), reader_cabanias.GetInt32(9));
+                        if (reader_hotel.GetByte(6).ToString().Equals("1"))
+                        {
+                            aux_hotel = new Hotel(reader_hotel.GetInt32(0), reader_hotel.GetString(1), reader_hotel.GetString(2), reader_hotel.GetString(3),
+                                reader_hotel.GetInt32(4), reader_hotel.GetInt32(5), true, float.Parse(reader_hotel.GetDouble(7).ToString()));
+                            misHoteles.Add(aux_hotel);
+                        }
+                        else {
+                            aux_hotel = new Hotel(reader_hotel.GetInt32(0), reader_hotel.GetString(1), reader_hotel.GetString(2), reader_hotel.GetString(3),
+                             reader_hotel.GetInt32(4), reader_hotel.GetInt32(5), false, float.Parse(reader_hotel.GetDouble(7).ToString()));
+                            misHoteles.Add(aux_hotel);
+                        }
+                    }
+                        reader_hotel.Close();
+                    /*************************
+                                 CABANIAS*/
+                    SqlDataReader reader_cabanias = command1.ExecuteReader();
+                    while (reader_cabanias.Read()) 
+                    {
+                        if (reader_cabanias.GetInt32(6).ToString().Equals("1")) { 
+                           aux_cabanias = new Cabaña(
+                                reader_cabanias.GetInt32(0), reader_cabanias.GetString(1), reader_cabanias.GetString(2), reader_cabanias.GetString(3),
+                                reader_cabanias.GetInt32(4), reader_cabanias.GetInt32(5), true, float.Parse(reader_cabanias.GetDouble(7).ToString()),
+                                reader_cabanias.GetInt32(8), reader_cabanias.GetInt32(9));
                         misCabanias.Add(aux_cabanias);
+                        }
+                        else
+                        {
+                            aux_cabanias = new Cabaña(
+                                 reader_cabanias.GetInt32(0), reader_cabanias.GetString(1), reader_cabanias.GetString(2), reader_cabanias.GetString(3),
+                                 reader_cabanias.GetInt32(4), reader_cabanias.GetInt32(5), false, float.Parse(reader_cabanias.GetDouble(7).ToString()),
+                                 reader_cabanias.GetInt32(8), reader_cabanias.GetInt32(9));
+                        misCabanias.Add(aux_cabanias);
+                        }
+                    }
+                        reader_cabanias.Close();
 
-                        aux_users = new Usuarios(reader_users.GetInt32(0), reader_users.GetString(1), reader_users.GetString(2), reader_users.GetString(3)
-                             , reader_users.GetBoolean(4), reader_users.GetBoolean(5));
-                        misUsuarios.Add(aux_users);
+                    /*************************
+                                 USUARIOS*/
+                    SqlDataReader reader_users = command2.ExecuteReader();
+                        while (reader_users.Read())
+                        {
+                        if (reader_users.GetByte(4).ToString().Equals("1"))
+                        { 
+                            if (reader_users.GetByte(5).ToString().Equals("1"))
+                            {
+                                aux_users = new Usuarios(reader_users.GetInt32(0), reader_users.GetString(1), reader_users.GetString(2), reader_users.GetString(3), true, true);
+                                misUsuarios.Add(aux_users);                                    
+                            }
+                            else
+                            {
+                                aux_users = new Usuarios(reader_users.GetInt32(0), reader_users.GetString(1), reader_users.GetString(2), reader_users.GetString(3), true, false);
+                                misUsuarios.Add(aux_users);
+                            }
+                        }
+                        else
+                        {
+                            if (reader_users.GetByte(5).ToString().Equals("1"))
+                            {
+                                aux_users = new Usuarios(reader_users.GetInt32(0), reader_users.GetString(1), reader_users.GetString(2), reader_users.GetString(3), false, true);
+                                misUsuarios.Add(aux_users);
+                            }
+                            else
+                            {
+                                aux_users = new Usuarios(reader_users.GetInt32(0), reader_users.GetString(1), reader_users.GetString(2), reader_users.GetString(3), false, false);
+                                misUsuarios.Add(aux_users);
+                            }
+                        }
 
+                        }
+                    reader_users.Close();
+                    /*************************
+                                 RESERVAS*/
+                    SqlDataReader reader_reserva = command3.ExecuteReader();
+                    while (reader_reserva.Read())
+                    {
 
                         if (todosUsuarios(reader_reserva.GetInt32(4)) &&
                             todosHoteles(reader_reserva.GetInt32(3)))
@@ -93,20 +151,14 @@ namespace TP2
                         getUsuarioXDni(reader_reserva.GetInt32(4)), reader_reserva.GetFloat(5));
                             misReservas.Add(aux_reserva);
                         }
-
-
-
                     }
-
-                    reader_hotel.Close();
-                    reader_cabanias.Close();
-                    reader_users.Close();
-                    reader_reserva.Close();
-
+                            reader_reserva.Close();
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("Algo salio mal perritos");
                     Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
                 }
             }
 
@@ -281,7 +333,7 @@ namespace TP2
             }
         }
 
-        //fin agtregar usuarios
+        //fin agregar usuarios
 
         //agregar RESERVA
 

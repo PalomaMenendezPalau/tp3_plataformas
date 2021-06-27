@@ -61,7 +61,7 @@ namespace TP2.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Data Source=basedv.ddns.net\DVTN;Initial Catalog=plataformasDesarrollo;Persist Security Info=True;User ID=paloma.menendez@davinci.edu.ar;Password=***********.
+        ///   Busca una cadena traducida similar a Data Source=basedv.ddns.net\DVTN;Database=plataformasDesarrollo;User Id=paloma.menendez@davinci.edu.ar;Password=Dv2021.
         /// </summary>
         internal static string connectionString {
             get {

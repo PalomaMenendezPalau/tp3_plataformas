@@ -30,7 +30,7 @@ namespace TP2
             if (txtLoginIngresoDNI.Text != "")
             {
                 string mensajeResultado = miAgencia.ValidarLogin(txtLoginIngresoDNI.Text, txtLoginIngresoPass.Text);
-                if (mensajeResultado.Equals("True") || mensajeResultado.Equals("False"))
+                if (mensajeResultado.Equals("true") || mensajeResultado.Equals("false"))
                 {
                     //CARGAR DATOS DE LOGINVALUES
                     userLog[0] = txtLoginIngresoDNI.Text; //DNI

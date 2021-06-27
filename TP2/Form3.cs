@@ -20,13 +20,12 @@ namespace TP2
 
             InitializeComponent();
             
-            if (userLog[1].Equals("False"))
+            if (userLog[1].Equals("false"))
                 {
                     this.mainTabControl.TabPages.Remove(tabAdmin);
                 }
-            
-            CargarDataGridAdmin();
-            CargarDataGridUser();
+            CargarDataGridAdmin(manager.getMisHoteles(),manager.getMisCabanias());
+            CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
             CargarDataGridABMUsuarios();
             CargarDataGridReservas();
             ComboBoxUsuario();
@@ -73,12 +72,6 @@ namespace TP2
 
         }
 
-        private void panelCabana_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
         //NUEVA CABAÑA
         private void button3_Click(object sender, EventArgs e)
         {
@@ -97,10 +90,8 @@ namespace TP2
                     int.Parse(txtCabañaPrecioDia.Text),
                     int.Parse(txtCabañasHabitaciones.Text),
                     int.Parse(txtCabañasBaños.Text));
-                //FGM_ Lo ve palo esto?
-//                 manager.GuardarDatosCabaña();
                  dataGridAdmin.Rows.Clear();
-                 CargarDataGridAdmin();
+                 CargarDataGridAdmin(manager.getMisHoteles(),manager.getMisCabanias());
                  LimpiarInputs();
                 }
                 else
@@ -136,7 +127,7 @@ namespace TP2
                             int.Parse(txtHotelPrecioPersona.Text));
                         LimpiarInputs();
                         dataGridAdmin.Rows.Clear();
-                        CargarDataGridAdmin();
+                        CargarDataGridAdmin(manager.getMisHoteles(), manager.getMisCabanias());
                     }
                     else
                     {
@@ -156,30 +147,6 @@ namespace TP2
 
         }
 
-        //private void GuardarDatosHoteles()
-        //{
-        //    try
-        //    {
-        //        manager.GuardarDatosHoteles();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        MessageBox.Show("Hubo un error, por favor intenta cargando los datos nuevamente.");
-        //    }
-        //
-        //}
-        //
-        private void button8_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-        }
-
-       
-
-
         private void btnAplicarUsr_Click(object sender, EventArgs e)
         {
 
@@ -192,8 +159,7 @@ namespace TP2
                     txtABMUsuariosPass.Text,
                     checkABMUsuariosAdmin.Checked,
                     checkABMUsuariosBloqueado.Checked);
-                //FGM_ Lo ve palo a caso?
-              //  manager.GuardarDatosUsuarios();
+
                 MessageBox.Show("Usuario generado con exito");
                 LimpiarInputsABMUsuarios();
                 btnCrearUsr.Visible = false;
@@ -207,9 +173,7 @@ namespace TP2
         }
 
         private void CargarDataGridABMUsuarios() {
-            //LIMPIO EL dataGridABMUsuarios
             dataGridABMUsuarios.Rows.Clear();
-            //COMPLETO EL dataGridABMUsuarios CON LOS DATOS DE LA LISTA misUsuarios
             foreach (Usuarios u in manager.getMisUsuarios())
             {
                 int n = dataGridABMUsuarios.Rows.Add();
@@ -230,1385 +194,184 @@ namespace TP2
             checkABMUsuariosBloqueado.Checked = false;
         }
 
-        private void CargarDataGridAdmin() {
-            
-            List<Alojamiento> alojs = manager.getMiAgencia().getAlojamientos();
-            foreach (Alojamiento a in alojs)
+        private void CargarDTGAdminCabañas(List<Cabaña> cabañas) {
+            foreach (Cabaña c in cabañas)
             {
                 string aTv;
                 int n = dataGridAdmin.Rows.Add();
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-                if (a is Hotel)
-                {
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID ADMIN
-                    dataGridAdmin.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridAdmin.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridAdmin.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridAdmin.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridAdmin.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridAdmin.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridAdmin.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridAdmin.Rows[n].Cells[7].Value = aTv;
-                    dataGridAdmin.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridAdmin.Rows[n].Cells[9].Value = "1";
-                    dataGridAdmin.Rows[n].Cells[10].Value = "1";   
-                }
-                else if (a is Cabaña)
-                {
+                if (c.getTV()) { aTv = "Si"; } else { aTv = "No"; }
 
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID ADMIN
-                    dataGridAdmin.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridAdmin.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridAdmin.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridAdmin.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridAdmin.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridAdmin.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridAdmin.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridAdmin.Rows[n].Cells[7].Value = aTv;
-                    dataGridAdmin.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridAdmin.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridAdmin.Rows[n].Cells[10].Value = c.getBaños();
-                }
+                //CARGAR VALORES EN GRID ADMIN
+                dataGridAdmin.Rows[n].Cells[0].Value = c.getCodigo();
+                dataGridAdmin.Rows[n].Cells[1].Value = "Cabaña";
+                dataGridAdmin.Rows[n].Cells[2].Value = c.getEstrellas();
+                dataGridAdmin.Rows[n].Cells[3].Value = c.getNombre();
+                dataGridAdmin.Rows[n].Cells[4].Value = c.getCiudad();
+                dataGridAdmin.Rows[n].Cells[5].Value = c.getBarrio();
+                dataGridAdmin.Rows[n].Cells[6].Value = c.getCantPersonas();
+                dataGridAdmin.Rows[n].Cells[7].Value = aTv;
+                dataGridAdmin.Rows[n].Cells[8].Value = c.getPrecioDia();
+                dataGridAdmin.Rows[n].Cells[9].Value = c.getHabitaciones();
+                dataGridAdmin.Rows[n].Cells[10].Value = c.getBaños();
+            }
+        }
+        private void CargarDTGAdminHoteles(List<Hotel> hoteles)
+        {
+            foreach (Hotel h in hoteles)
+            {
+                string aTv;
+                int n = dataGridAdmin.Rows.Add();
+                if (h.getTV()) { aTv = "Si"; } else { aTv = "No"; }
 
+                //CARGAR VALORES EN GRID ADMIN
+                dataGridAdmin.Rows[n].Cells[0].Value = h.getCodigo();
+                dataGridAdmin.Rows[n].Cells[1].Value = "Hotel";
+                dataGridAdmin.Rows[n].Cells[2].Value = h.getEstrellas();
+                dataGridAdmin.Rows[n].Cells[3].Value = h.getNombre();
+                dataGridAdmin.Rows[n].Cells[4].Value = h.getCiudad();
+                dataGridAdmin.Rows[n].Cells[5].Value = h.getBarrio();
+                dataGridAdmin.Rows[n].Cells[6].Value = h.getCantPersonas();
+                dataGridAdmin.Rows[n].Cells[7].Value = aTv;
+                dataGridAdmin.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
+                dataGridAdmin.Rows[n].Cells[9].Value = "1";
+                dataGridAdmin.Rows[n].Cells[10].Value = "1";
             }
         }
 
-        private void CargarDataGridUser()
-        {
-            dataGridUser.Rows.Clear();
-            CargarDataGridUserSoloCabanas();
-            CargarDataGridUserSolohoteles();
+        private void CargarDataGridAdmin(List<Hotel> hoteles, List<Cabaña> cabañas) {
+            CargarDTGAdminCabañas(cabañas);
+            CargarDTGAdminHoteles(hoteles);
         }
-
-        private void CargarDataGridUserSoloCabanas()
+        private void CargarDataGridUser(List<Hotel> hoteles, List<Cabaña> cabañas)
         {
-            List<Alojamiento> alojs = manager.getMiAgencia().getAlojamientos();
+            CargarDTGUserCabañas(cabañas);
+            CargarDTGUserHoteles(hoteles);
+        }
+        private void CargarDataGridUserFiltro(List<Alojamiento> alojs)
+        {
+            List<Cabaña> cabañas = new List<Cabaña>();
+            List<Hotel> hoteles = new List<Hotel>();
             foreach (Alojamiento a in alojs)
             {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
                 if (a is Cabaña)
                 {
+                    Cabaña c = (Cabaña)a;
+                    cabañas.Add(new Cabaña(c.getCodigo(),
+                        c.getNombre(),
+                        c.getCiudad(),
+                        c.getBarrio(),
+                        c.getEstrellas(),
+                        c.getCantPersonas(),
+                        c.getTV(),
+                        c.getPrecioDia(),
+                        c.getHabitaciones(),
+                        c.getBaños()));
+                }
+                else 
+                {
+                    Hotel h = (Hotel)a;
+                    hoteles.Add(new Hotel(h.getCodigo(),
+                        h.getNombre(),
+                        h.getCiudad(),
+                        h.getBarrio(),
+                        h.getEstrellas(),
+                        h.getCantPersonas(),
+                        h.getTV(),
+                        h.getPrecioPorPersona()));
+                }
+            }
+            CargarDTGUserCabañas(cabañas);
+            CargarDTGUserHoteles(hoteles);
+        }
+
+        private void CargarDataGridUserFiltroHoteles(List<Alojamiento> alojs)
+        {
+            List<Hotel> hoteles = new List<Hotel>();
+            foreach (Alojamiento a in alojs)
+            {
+                if (a is Hotel)
+                {
+                    Hotel h = (Hotel)a;
+                    hoteles.Add(new Hotel(h.getCodigo(),
+                        h.getNombre(),
+                        h.getCiudad(),
+                        h.getBarrio(),
+                        h.getEstrellas(),
+                        h.getCantPersonas(),
+                        h.getTV(),
+                        h.getPrecioPorPersona()));
+                }
+            }
+            CargarDTGUserHoteles(hoteles);
+        }
+
+        private void CargarDataGridUserFiltroCabañas(List<Alojamiento> alojs)
+        {
+            List<Cabaña> cabañas = new List<Cabaña>();
+            foreach (Alojamiento a in alojs)
+            {
+                if (a is Cabaña)
+                {
+                    Cabaña c = (Cabaña)a;
+                    cabañas.Add(new Cabaña(c.getCodigo(),
+                        c.getNombre(),
+                        c.getCiudad(),
+                        c.getBarrio(),
+                        c.getEstrellas(),
+                        c.getCantPersonas(),
+                        c.getTV(),
+                        c.getPrecioDia(),
+                        c.getHabitaciones(),
+                        c.getBaños()));
+                }
+            }
+            CargarDTGUserCabañas(cabañas);
+        }
+
+        //_FGM PRUEBA DE CARGA DATAGRIDUSER
+        private void CargarDTGUserCabañas(List<Cabaña> cabañas) {
+            foreach (Cabaña c in cabañas)
+            {
                 int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-                    dataGridUser.Rows[n].Cells[11].Value = "Reservar";
-                }
-            }
-        }       
-        private void CargarDataGridCantEstrellasCabana(int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
                 string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-                }
+                if (c.getTV()) { aTv = "Si"; } else { aTv = "No"; }
+                //CARGAR VALORES EN GRID USER
+                dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
+                dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
+                dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
+                dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
+                dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
+                dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
+                dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
+                dataGridUser.Rows[n].Cells[7].Value = aTv;
+                dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
+                dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
+                dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
+                dataGridUser.Rows[n].Cells[11].Value = "Reservar";
             }
         }
-        private void CargarDataGridCiudadesYCantPersonasCabana(int cantPersonas, String ciudades)
+        private void CargarDTGUserHoteles(List<Hotel> hoteles)
         {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
+            foreach (Hotel h in hoteles)
             {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-                }
-            }
-        }
-        private void CargarDataGridCiudadesYCantEstrellasCabana(String ciudades, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().MasEstrellas(cantEstrellas).CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-                }
-            }
-        }
-        private void CargarDataGridCiudadesCabana(String ciudades)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-                }
-            }
-        }
-        private void CargarDataGridCiudadesYPreciosCabana(String ciudades, float precioMax, float precioMin)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).AlojamientosEntrePrecios(precioMax, precioMin).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-                }
-            }
-        }
-        private void CargarDataGridPreciosCabana(float precioMax, float precioMin)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosEntrePrecios(precioMax, precioMin).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-                }
-            }
-        }
-        private void CargarDataGridCabana(int cantPersonas, float precioMax, float precioMin, String ciudades, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).AlojamientosEntrePrecios(precioMax, precioMin)
-                .CiudadesDeAlojamientos(ciudades).
-                MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridCityNullCabana(int cantPersonas, float precioMax, float precioMin, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).AlojamientosEntrePrecios(precioMax, precioMin)
-                .MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridCantEstrellasNullCabana(int cantPersonas, float precioMax, float precioMin, String ciudades)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).AlojamientosEntrePrecios(precioMax, precioMin)
-                .CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridSinPreciosCabana(int cantPersonas, String ciudades, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).MasEstrellas(cantEstrellas)
-                .CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridSinPreciosYCiudadCabana(int cantPersonas, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).MasEstrellas(cantEstrellas)
-                .getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridCantPersonasCabana(int cantPersonas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }        
-        private void CargarDataGridCantPersonasHotel(int cantPersonas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridCityNullHotel(int cantPersonas, float precioMax, float precioMin, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).AlojamientosEntrePrecios(precioMax, precioMin)
-                .MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        
-        private void CargarDataGridCantEstrellasNullHotel(int cantPersonas, float precioMax, float precioMin, String ciudades)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).AlojamientosEntrePrecios(precioMax, precioMin)
-                .CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridSinPreciosHotel(int cantPersonas, int cantEstrellas, String ciudades)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas)
-                .CiudadesDeAlojamientos(ciudades).MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridSinPreciosYCiudadHotel(int cantPersonas, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas)
-                .MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-
-        private void CargarDataGridHotel(int cantPersonas, float precioMax, float precioMin, String ciudades, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).AlojamientosEntrePrecios(precioMax, precioMin)
-                .CiudadesDeAlojamientos(ciudades).
-                MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-
-        private void CargarDataGridTodos(int cantPersonas, float precioMax, float precioMin, String ciudades, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).AlojamientosEntrePrecios(precioMax, precioMin)
-                .CiudadesDeAlojamientos(ciudades).
-                MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                    dataGridUser.Rows[n].Cells[11].Value = "Reservar";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-                    dataGridUser.Rows[n].Cells[11].Value = "Reservar";
-                }
-            }
-        }
-        private void CargarDataGridUserSolohoteles()
-        {
-            List<Alojamiento> alojs = manager.getMiAgencia().getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
                 int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                    dataGridUser.Rows[n].Cells[11].Value = "Reservar";
-                }
-
-            }
-        }
-        private void CargarDataGridCantEstrellasHotel(int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
                 string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
+                if (h.getTV()) { aTv = "Si"; } else { aTv = "No"; }
+                //CARGAR VALORES EN GRID USER
+                dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
+                dataGridUser.Rows[n].Cells[1].Value = "Hotel";
+                dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
+                dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
+                dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
+                dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
+                dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
+                dataGridUser.Rows[n].Cells[7].Value = aTv;
+                dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
+                dataGridUser.Rows[n].Cells[9].Value = "1";
+                dataGridUser.Rows[n].Cells[10].Value = "1";
+                dataGridUser.Rows[n].Cells[11].Value = "Reservar";
             }
-        }
-        
-        private void CargarDataGridCiudadesYCantPersonasHotel(String ciudades, int cantPersonas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).AlojamientosPorCantidadDePersonas(cantPersonas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }  
-        private void CargarDataGridCiudadesYCantEstrellasHotel(String ciudades, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridCiudadesHotel(String ciudades)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridCiudadesYPreciosHotel(String ciudades, float precioMax, float precioMin)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).AlojamientosEntrePrecios(precioMax, precioMin).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }
-        private void CargarDataGridPreciosHotel(float precioMax, float precioMin)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosEntrePrecios(precioMax, precioMin).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-            }
-        }     
-        private void CargarDataGridCityNullTodos(int cantEstrellas, int cantPersonas, float precioMax, float precioMin)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().MasEstrellas(cantEstrellas)
-                .AlojamientosPorCantidadDePersonas(cantPersonas)
-                .AlojamientosEntrePrecios(precioMax, precioMin).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridSinPrecios(int cantEstrellas, int cantPersonas, string ciudades)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().MasEstrellas(cantEstrellas)
-                .AlojamientosPorCantidadDePersonas(cantPersonas)
-                .CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridCantEstrellasNullTodos(float precioMax, float precioMin, String ciudades, int cantPersonas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosEntrePrecios(precioMax, precioMin)
-                .AlojamientosPorCantidadDePersonas(cantPersonas)
-                .CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridSinPreciosYCiudad(int cantEstrellas, int cantPersonas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridCantPersonasTodos(int cantPersonas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosPorCantidadDePersonas(cantPersonas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridCantEstrellasTodos(int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridCiudadesTodos(String ciudades)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridCiudadesYCantPersonasTodos(String ciudades, int cantPersonas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).AlojamientosPorCantidadDePersonas(cantPersonas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridCiudadesYCantEstrellasTodos(String ciudades, int cantEstrellas)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().CiudadesDeAlojamientos(ciudades).MasEstrellas(cantEstrellas).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-
-        private void CargarDataGridCiudadesYPreciosTodos(float precioMax, float precioMin, String ciudades)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosEntrePrecios(precioMax, precioMin).CiudadesDeAlojamientos(ciudades).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
-        private void CargarDataGridCPreciosTodos(float precioMax, float precioMin)
-        {
-            dataGridUser.Rows.Clear();
-            List<Alojamiento> alojs = manager.getMiAgencia().AlojamientosEntrePrecios(precioMax, precioMin).getAlojamientos();
-            foreach (Alojamiento a in alojs)
-            {
-                string aTv;
-                if (a.getTV()) { aTv = "Si"; } else { aTv = "No"; }
-
-                if (a is Hotel)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Hotel h = (Hotel)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = h.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Hotel";
-                    dataGridUser.Rows[n].Cells[2].Value = h.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = h.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = h.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = h.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = h.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = h.getPrecioPorPersona();
-                    dataGridUser.Rows[n].Cells[9].Value = "1";
-                    dataGridUser.Rows[n].Cells[10].Value = "1";
-                }
-                else if (a is Cabaña)
-                {
-                    int n = dataGridUser.Rows.Add();
-                    Cabaña c = (Cabaña)a;
-                    //CARGAR VALORES EN GRID USER
-                    dataGridUser.Rows[n].Cells[0].Value = c.getCodigo();
-                    dataGridUser.Rows[n].Cells[1].Value = "Cabaña";
-                    dataGridUser.Rows[n].Cells[2].Value = c.getEstrellas();
-                    dataGridUser.Rows[n].Cells[3].Value = c.getNombre();
-                    dataGridUser.Rows[n].Cells[4].Value = c.getCiudad();
-                    dataGridUser.Rows[n].Cells[5].Value = c.getBarrio();
-                    dataGridUser.Rows[n].Cells[6].Value = c.getCantPersonas();
-                    dataGridUser.Rows[n].Cells[7].Value = aTv;
-                    dataGridUser.Rows[n].Cells[8].Value = c.getPrecioDia();
-                    dataGridUser.Rows[n].Cells[9].Value = c.getHabitaciones();
-                    dataGridUser.Rows[n].Cells[10].Value = c.getBaños();
-
-                }
-            }
-        }
+        }   
 
         private void CargarDataGridReservas()
         {
@@ -1649,8 +412,6 @@ namespace TP2
                     manager.buscarUsuarios(int.Parse(userLog[0])),
                     (precio * int.Parse(labelDiasTotales.Text))
                     );
-                //FGM_ Este metodo lo revisa palo?
-                //manager.GuardarReservas();
 
                 dataGridReservas.Rows.Clear();
                 CargarDataGridReservas();
@@ -1671,9 +432,6 @@ namespace TP2
         private void dataGridABMUsuarios_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
-        private void button5_Click(object sender, EventArgs e)
-        {       
         }
 
         private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
@@ -1744,7 +502,7 @@ namespace TP2
             {
                 if (selectedItemAloj.Equals("Cabaña"))
                 {
-                    CargarDataGridUserSoloCabanas();
+                    CargarDTGUserCabañas(manager.getMisCabanias());
 
                     if (textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals("0"))
@@ -1752,7 +510,7 @@ namespace TP2
                         MessageBox.Show("No hay alojamientos en ese rango de precios.");
                         button3Filtrar.Enabled = true;
                         dataGridUser.Rows.Clear();
-                        CargarDataGridUser();
+                        CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
                     }
                     else if (!textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals("0"))
@@ -1760,7 +518,7 @@ namespace TP2
                         MessageBox.Show("El precio maximo tiene que ser mayor al minimo.");
                         button3Filtrar.Enabled = true;
                         dataGridUser.Rows.Clear();
-                        CargarDataGridUser();
+                        CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
                     }
                     //TODOS LOS FILTROS AL MISMO TIEMPO
                     else if (comboBox3CantPersonas.SelectedItem != null
@@ -1774,11 +532,12 @@ namespace TP2
                         && comboBox2City.SelectedItem != null
                         && comboBox4CantEstrellas.SelectedItem != null)
                     {
-                        CargarDataGridCabana(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            comboBox2City.SelectedItem.ToString(),
-                            int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString())).getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
@@ -1796,11 +555,12 @@ namespace TP2
                         && comboBox2City.SelectedItem == null
                         && comboBox4CantEstrellas.SelectedItem != null)
                     {
-                        CargarDataGridCityNullCabana(
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
+
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     }
@@ -1817,11 +577,11 @@ namespace TP2
                         && comboBox2City.SelectedItem != null
                         )
                     {
-                        CargarDataGridCantEstrellasNullCabana(
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -1831,10 +591,11 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridSinPreciosCabana(
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            comboBox2City.SelectedItem.ToString(),
-                            int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -1845,8 +606,10 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridSinPreciosYCiudadCabana(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()),
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .MasEstrellas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
@@ -1856,7 +619,9 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridCantPersonasCabana(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                     }
@@ -1865,7 +630,9 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem == null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridCantEstrellasCabana(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     }
@@ -1874,7 +641,10 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridCiudadesYCantPersonasCabana(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()), comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -1884,9 +654,12 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem == null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridCiudadesYCantEstrellasCabana(comboBox2City.SelectedItem.ToString(), int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
-                        comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
+                        comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     }
                     //SOLAMENTE CIUDADES
@@ -1896,7 +669,9 @@ namespace TP2
                         && textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals(""))
                     {
-                        CargarDataGridCiudadesCabana(comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                     }
@@ -1913,10 +688,10 @@ namespace TP2
                         && comboBox4CantEstrellas.SelectedItem == null
                         )
                     {
-                        CargarDataGridCiudadesYPreciosCabana(
-                            comboBox2City.SelectedItem.ToString(),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()));
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                     }
@@ -1934,9 +709,10 @@ namespace TP2
                         && comboBox4CantEstrellas.SelectedItem == null
                         )
                 {
-                    CargarDataGridPreciosCabana(
-                        float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                        float.Parse(textBox2PrecioMax.Text.Trim().ToString()));
+                        CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .getAlojamientos());
+                 
                 }
             }
                 /*  ************************************************************************************************************************************************
@@ -1945,14 +721,14 @@ namespace TP2
                                     SI FILTRAMOS POR HOTEL          */
                 else if (selectedItemAloj.Equals("Hotel"))
                 {
-                    CargarDataGridUserSolohoteles();
+                    CargarDTGUserHoteles(manager.getMisHoteles());
                     if (textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals("0"))
                     {
                         MessageBox.Show("No hay alojamientos en ese rango de precios.");
                         button3Filtrar.Enabled = true;
                         dataGridUser.Rows.Clear();
-                        CargarDataGridUser();
+                        CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
                     }
                     else if (!textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals("0"))
@@ -1960,7 +736,7 @@ namespace TP2
                         MessageBox.Show("El precio maximo tiene que ser mayor al minimo.");
                         button3Filtrar.Enabled = true;
                         dataGridUser.Rows.Clear();
-                        CargarDataGridUser();
+                        CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
                     }
                     //TODOS LOS FILTROS AL MISMO TIEMPO
                     else if (comboBox3CantPersonas.SelectedItem != null
@@ -1974,11 +750,12 @@ namespace TP2
                         && comboBox2City.SelectedItem != null
                         && comboBox4CantEstrellas.SelectedItem != null)
                     {
-                        CargarDataGridHotel(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            comboBox2City.SelectedItem.ToString(),
-                            int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
@@ -1996,11 +773,12 @@ namespace TP2
                         && comboBox2City.SelectedItem == null
                         && comboBox4CantEstrellas.SelectedItem != null)
                     {
-                        CargarDataGridCityNullHotel(
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
+
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     }
@@ -2017,11 +795,11 @@ namespace TP2
                         && comboBox2City.SelectedItem != null
                         )
                     {
-                        CargarDataGridCantEstrellasNullHotel(
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -2031,10 +809,11 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridSinPreciosHotel(
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()),
-                            comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -2045,8 +824,10 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridSinPreciosYCiudadHotel(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()),
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .MasEstrellas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
@@ -2056,7 +837,9 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridCantPersonasHotel(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                     }
@@ -2065,7 +848,9 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem == null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridCantEstrellasHotel(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     }
@@ -2074,7 +859,10 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridCiudadesYCantPersonasHotel(comboBox2City.SelectedItem.ToString(), int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -2084,9 +872,12 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem == null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridCiudadesYCantEstrellasHotel(comboBox2City.SelectedItem.ToString(), int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
-                        comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
+                        comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     }
                     //SOLAMENTE CIUDADES
@@ -2096,7 +887,9 @@ namespace TP2
                         && textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals(""))
                     {
-                        CargarDataGridCiudadesHotel(comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                     }
@@ -2113,10 +906,10 @@ namespace TP2
                         && comboBox4CantEstrellas.SelectedItem == null
                         )
                     {
-                        CargarDataGridCiudadesYPreciosHotel(
-                            comboBox2City.SelectedItem.ToString(),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()));
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                     }
@@ -2133,9 +926,9 @@ namespace TP2
                         && comboBox4CantEstrellas.SelectedItem == null
                         )
                     {
-                        CargarDataGridPreciosHotel(
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()));
+                        CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .getAlojamientos());
                     }
                 }
                 /*  ************************************************************************************************************************************************
@@ -2145,14 +938,14 @@ namespace TP2
 
                 else if (selectedItemAloj.Equals("Todos"))
                 {
-                    CargarDataGridUser();
-                    if(textBox1PrecioMin.Text.Trim().Equals("0")
+                    CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
+                    if (textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals("0"))
                     {
                         MessageBox.Show("No hay alojamientos en ese rango de precios.");
                         button3Filtrar.Enabled = true;
                         dataGridUser.Rows.Clear();
-                        CargarDataGridUser();
+                        CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
                     }
                     else if(!textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals("0"))
@@ -2160,7 +953,7 @@ namespace TP2
                         MessageBox.Show("El precio maximo tiene que ser mayor al minimo.");
                         button3Filtrar.Enabled = true;
                         dataGridUser.Rows.Clear();
-                        CargarDataGridUser();
+                        CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
                     }
                     //TODOS LOS FILTROS AL MISMO TIEMPO
                     else if (comboBox3CantPersonas.SelectedItem != null
@@ -2174,11 +967,12 @@ namespace TP2
                         && comboBox2City.SelectedItem != null
                         && comboBox4CantEstrellas.SelectedItem != null)
                     {
-                        CargarDataGridTodos(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()), 
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            comboBox2City.SelectedItem.ToString(),
-                            int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
@@ -2196,10 +990,12 @@ namespace TP2
                         && comboBox2City.SelectedItem == null
                         && comboBox4CantEstrellas.SelectedItem != null)
                     {
-                        CargarDataGridCityNullTodos(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()),
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()));
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .getAlojamientos());
+
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     } 
@@ -2216,11 +1012,11 @@ namespace TP2
                         && comboBox2City.SelectedItem != null
                         )
                     {
-                        CargarDataGridCantEstrellasNullTodos(
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            comboBox2City.SelectedItem.ToString(),
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -2230,9 +1026,11 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridSinPrecios(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()),
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()),
-                            comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -2243,8 +1041,10 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridSinPreciosYCiudad(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()),
-                            int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
@@ -2254,7 +1054,9 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridCantPersonasTodos(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
                     }
@@ -2263,7 +1065,9 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem == null
                         && comboBox2City.SelectedItem == null)
                     {
-                        CargarDataGridCantEstrellasTodos(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     }
@@ -2272,7 +1076,10 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem != null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridCiudadesYCantPersonasTodos(comboBox2City.SelectedItem.ToString(), int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -2282,9 +1089,12 @@ namespace TP2
                         && comboBox3CantPersonas.SelectedItem == null
                         && comboBox2City.SelectedItem != null)
                     {
-                        CargarDataGridCiudadesYCantEstrellasTodos(comboBox2City.SelectedItem.ToString(), int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
-                        comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
+                            .getAlojamientos());
 
+                        comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                         comboBox4CantEstrellas.SelectedItem = (int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()));
                     }
                     //SOLAMENTE CIUDADES
@@ -2294,7 +1104,9 @@ namespace TP2
                         && textBox1PrecioMin.Text.Trim().Equals("0")
                         && textBox2PrecioMax.Text.Trim().Equals(""))
                     {
-                        CargarDataGridCiudadesTodos(comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                     }
@@ -2311,10 +1123,10 @@ namespace TP2
                         && comboBox4CantEstrellas.SelectedItem == null
                         )
                     {
-                        CargarDataGridCiudadesYPreciosTodos(
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()),
-                            comboBox2City.SelectedItem.ToString());
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
+                            .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
                     }
@@ -2331,9 +1143,9 @@ namespace TP2
                         && comboBox4CantEstrellas.SelectedItem == null
                         )
                     {
-                        CargarDataGridCPreciosTodos(
-                            float.Parse(textBox1PrecioMin.Text.Trim().ToString()),
-                            float.Parse(textBox2PrecioMax.Text.Trim().ToString()));
+                        CargarDataGridUserFiltro(manager.getMiAgencia()
+                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .getAlojamientos());
                     }
 
                 }
@@ -2352,7 +1164,7 @@ namespace TP2
         private void BorrarFiltros()
         {
             dataGridUser.Rows.Clear();
-            CargarDataGridUser();
+            CargarDataGridUser(manager.getMisHoteles(), manager.getMisCabanias());
             button3Filtrar.Enabled = true;
         }
 
@@ -2421,11 +1233,10 @@ namespace TP2
                         int.Parse(txtCabañasHabitaciones.Text),
                         int.Parse(txtCabañasBaños.Text));
                 }
-                //FGM_ PALOMA VES ESTO?
-               // manager.GuardarDatosCabaña();
+
                 MessageBox.Show("Se ha editado la cabaña con éxito");
                 dataGridAdmin.Rows.Clear();
-                CargarDataGridAdmin();
+                CargarDataGridAdmin(manager.getMisHoteles(), manager.getMisCabanias());
             }
             catch
             {
@@ -2495,9 +1306,8 @@ namespace TP2
             try
             {
                 manager.eliminarCabania(this.codigo);
-                //manager.GuardarDatosCabaña();
                 dataGridAdmin.Rows.Clear();
-                CargarDataGridAdmin();
+                CargarDataGridAdmin(manager.getMisHoteles(), manager.getMisCabanias());
                 MessageBox.Show("Se ha borrado el alojamiento con éxito");
             }
             catch
@@ -2516,10 +1326,9 @@ namespace TP2
             try
             {
                 manager.eliminarHotel(this.codigo);
-               // manager.GuardarDatosHoteles();
                 MessageBox.Show("Se ha borrado el alojamiento con éxito");
                 dataGridAdmin.Rows.Clear();
-                CargarDataGridAdmin();
+                CargarDataGridAdmin(manager.getMisHoteles(), manager.getMisCabanias());
             }
             catch
             {
@@ -2544,11 +1353,10 @@ namespace TP2
                             checkHotelTv.Checked,
                             int.Parse(txtHotelPrecioPersona.Text));
                 }
-                //FGM_ PALOMA PODES VER ESTO POR FAVOR?
-                //manager.GuardarDatosHoteles();
+
                 MessageBox.Show("Se ha editado el hotel con éxito");
                 dataGridAdmin.Rows.Clear();
-                CargarDataGridAdmin();
+                CargarDataGridAdmin(manager.getMisHoteles(), manager.getMisCabanias());
             }
             catch
             {
@@ -2602,8 +1410,6 @@ namespace TP2
                 checkABMUsuariosBloqueado.Checked);
 
             MessageBox.Show("Usuario editado correctamente");
-            //FGM_ PALOMA, VES ESTE METODO? O TE TIRO VINAGRE?
-           // manager.GuardarDatosUsuarios();
             LimpiarInputsABMUsuarios();
             CargarDataGridABMUsuarios();
         }
@@ -2660,5 +1466,3 @@ namespace TP2
 
             
 }
-    
-
