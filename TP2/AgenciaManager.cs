@@ -75,6 +75,7 @@ namespace TP2
                              reader_hotel.GetInt32(4), reader_hotel.GetInt32(5), false, float.Parse(reader_hotel.GetDouble(7).ToString()));
                             misHoteles.Add(aux_hotel);
                         }
+                        miAgencia.insertarAlojamiento(aux_hotel);
                     }
                         reader_hotel.Close();
                     /*************************
@@ -97,6 +98,7 @@ namespace TP2
                                  reader_cabanias.GetInt32(8), reader_cabanias.GetInt32(9));
                         misCabanias.Add(aux_cabanias);
                         }
+                        miAgencia.insertarAlojamiento(aux_cabanias);
                     }
                         reader_cabanias.Close();
 
@@ -159,7 +161,7 @@ namespace TP2
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Algo salio mal perritos");
+                    Console.WriteLine("Error en la inicializacion de los atributos");
                     Console.WriteLine(ex.Message);
                     Console.WriteLine(ex.StackTrace);
                 }

@@ -514,7 +514,6 @@ namespace TP2
             BotonFiltrar();
         }
 
-
         private void BotonFiltrar()
         {
 
@@ -523,6 +522,8 @@ namespace TP2
                     ************************************************************************************************************************************************
                                     SI FILTRAMOS POR CABANA          */
             string selectedItemAloj = comboBox1TypeOfAloj.SelectedItem.ToString();
+            List<Alojamiento> alojs = new List<Alojamiento>();
+            
             try
             {
                 if (selectedItemAloj.Equals("Cabaña"))
@@ -557,10 +558,9 @@ namespace TP2
                         && comboBox2City.SelectedItem != null
                         && comboBox4CantEstrellas.SelectedItem != null)
                     {
-
                         CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
                             .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString())).getAlojamientos());
 
@@ -582,7 +582,7 @@ namespace TP2
                     {
                         CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
                             .getAlojamientos());
 
@@ -604,7 +604,7 @@ namespace TP2
                     {
                         CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
                             .getAlojamientos());
 
@@ -715,7 +715,7 @@ namespace TP2
                     {
                         CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
@@ -735,7 +735,7 @@ namespace TP2
                         )
                 {
                         CargarDataGridUserFiltroCabañas(manager.getMiAgencia()
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .getAlojamientos());
                  
                 }
@@ -777,7 +777,7 @@ namespace TP2
                     {
                         CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
                             .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
                             .getAlojamientos());
@@ -800,7 +800,7 @@ namespace TP2
                     {
                         CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
                             .getAlojamientos());
 
@@ -822,7 +822,7 @@ namespace TP2
                     {
                         CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
                             .getAlojamientos());
 
@@ -933,7 +933,7 @@ namespace TP2
                     {
                         CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .getAlojamientos());
 
                         comboBox2City.SelectedItem = comboBox2City.SelectedItem.ToString();
@@ -952,7 +952,7 @@ namespace TP2
                         )
                     {
                         CargarDataGridUserFiltroHoteles(manager.getMiAgencia()
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .getAlojamientos());
                     }
                 }
@@ -994,7 +994,7 @@ namespace TP2
                     {
                         CargarDataGridUserFiltro(manager.getMiAgencia()
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
                             .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
                             .getAlojamientos());
@@ -1018,7 +1018,7 @@ namespace TP2
                         CargarDataGridUserFiltro(manager.getMiAgencia()
                             .MasEstrellas(int.Parse(comboBox4CantEstrellas.SelectedItem.ToString()))
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .getAlojamientos());
 
                         comboBox3CantPersonas.SelectedItem = (int.Parse(comboBox3CantPersonas.SelectedItem.ToString()));
@@ -1038,7 +1038,7 @@ namespace TP2
                         )
                     {
                         CargarDataGridUserFiltro(manager.getMiAgencia()
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .AlojamientosPorCantidadDePersonas(int.Parse(comboBox3CantPersonas.SelectedItem.ToString()))
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
                             .getAlojamientos());
@@ -1149,7 +1149,7 @@ namespace TP2
                         )
                     {
                         CargarDataGridUserFiltro(manager.getMiAgencia()
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .CiudadesDeAlojamientos(comboBox2City.SelectedItem.ToString())
                             .getAlojamientos());
 
@@ -1169,7 +1169,7 @@ namespace TP2
                         )
                     {
                         CargarDataGridUserFiltro(manager.getMiAgencia()
-                            .AlojamientosEntrePrecios(float.Parse(textBox2PrecioMax.Text.Trim().ToString()), float.Parse(textBox1PrecioMin.Text.Trim().ToString()))
+                            .AlojamientosEntrePrecios(float.Parse(textBox1PrecioMin.Text.Trim().ToString()), float.Parse(textBox2PrecioMax.Text.Trim().ToString()))
                             .getAlojamientos());
                     }
 
