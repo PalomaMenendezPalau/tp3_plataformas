@@ -33,7 +33,7 @@ namespace TP2
 
         public void ComboBoxUsuario()
         {
-            foreach (String ciudad in manager.MostrarCiudad())
+            foreach (string ciudad in manager.MostrarCiudad())
                comboBox2City.Items.Add(ciudad);
 
             foreach (String tipoAloj in manager.MostrarTipoAloj())              
@@ -403,21 +403,41 @@ namespace TP2
 
         private void dataGridUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int codigoAloj = manager.getMiAgencia().getAlojamientos()[dataGridUser.CurrentCell.RowIndex].getCodigo();
-            int precio = int.Parse(dataGridUser.Rows[dataGridUser.CurrentCell.RowIndex].Cells["Precio"].Value.ToString());
+            
+            float precio = float.Parse(dataGridUser.Rows[dataGridUser.CurrentCell.RowIndex].Cells["Precio"].Value.ToString());
 
             if (dataGridUser.Columns[e.ColumnIndex].Name == "Reservar")
             {
-                
-                manager.agregarReserva(
-                    manager.getMisReservas().Count+1,
-                    dateTimeIda.Value,
-                    dateTimeVuelta.Value,
-                    manager.getMiAgencia().getAlojamientos()[dataGridUser.CurrentCell.RowIndex],
-                    manager.buscarUsuarios(int.Parse(userLog[0])),
-                    (precio * int.Parse(labelDiasTotales.Text))
-                    );
+                int filaSeleccionada = dataGridUser.CurrentCell.RowIndex;
+                int codigoSeleccionado = int.Parse(dataGridUser.Rows[filaSeleccionada].Cells[0].Value.ToString()); 
+                string tipoAloj = dataGridUser.Rows[filaSeleccionada].Cells[1].Value.ToString();
 
+                if (tipoAloj.Equals("Hotel"))
+                {
+                    foreach (Hotel h in manager.getMisHoteles())
+                        if (codigoSeleccionado == h.getCodigo())
+                            manager.agregarReserva(
+                                manager.getMisReservas().Count + 1,
+                                dateTimeIda.Value,
+                                dateTimeVuelta.Value,
+                                (Alojamiento)h,
+                                manager.buscarUsuarios(int.Parse(userLog[0])),
+                                (precio * int.Parse(labelDiasTotales.Text))
+                                );
+                }
+                else
+                {
+                    foreach (Cabaña c in manager.getMisCabanias())
+                        if (codigoSeleccionado == c.getCodigo())
+                            manager.agregarReserva(
+                                manager.getMisReservas().Count + 1,
+                                dateTimeIda.Value,
+                                dateTimeVuelta.Value,
+                                (Alojamiento)c,
+                                manager.buscarUsuarios(int.Parse(userLog[0])),
+                                (precio * int.Parse(labelDiasTotales.Text))
+                                );
+                }
                 dataGridReservas.Rows.Clear();
                 CargarDataGridReservas();
             }

@@ -18,12 +18,15 @@ namespace TP2
         protected List<Reservas> misReservas = new List<Reservas>();
         protected List<Hotel> misHoteles = new List<Hotel>();
         protected List<Cabaña> misCabanias = new List<Cabaña>();
-        protected Usuarios usuarioConectado;
         private int intentos = 0;
 
         public AgenciaManager(Agencia agen) {
             miAgencia = agen;
             this.InicializarAtributos();
+            foreach (Usuarios u in misUsuarios)
+            {
+                Console.WriteLine("DNI: "+u.getDni().ToString()+"Pass: "+u.getPassword()+"Nombre: "+u.getNombre());
+            }
         }
 
         private void InicializarAtributos()
@@ -361,13 +364,13 @@ namespace TP2
                 command.Parameters["@usuario"].Value = Persona.getDni();
                 if (Propiedad is Hotel)
                 {
-                    command.Parameters["@cabania"].Value = null;
+                    command.Parameters["@cabania"].Value = 0;
                     command.Parameters["@hotel"].Value = Propiedad.getCodigo();
                 }
                 else
                 {
                     command.Parameters["@cabania"].Value = Propiedad.getCodigo();
-                    command.Parameters["@hotel"].Value = null;
+                    command.Parameters["@hotel"].Value = 0;
                 }
                 command.Parameters["@precio"].Value = Precio;
                 try
@@ -375,6 +378,9 @@ namespace TP2
                     connection.Open();
                     //esta consulta NO espera un resultado para leer, es del tipo NON Query
                     resultadoQuery = command.ExecuteNonQuery();
+                    if(resultadoQuery == 1)
+                        misReservas.Add(new Reservas(ID, FDesde, FHasta, Propiedad, Persona, Precio));
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -383,18 +389,6 @@ namespace TP2
                 }
             }
 
-            if (resultadoQuery == 1)
-            {
-                //Ahora sí lo agrego en la lista
-                Reservas nuevo = new Reservas(ID, FDesde, FHasta, Propiedad, Persona, Precio);
-                misReservas.Add(nuevo);
-                return true;
-            }
-            else
-            {
-                //algo salió mal con la query porque no generó 1 registro
-                return false;
-            }
         }
 
         // METODOS DE OBTENER
@@ -1026,7 +1020,7 @@ namespace TP2
             }
 
         // estos metodos son para mostrar las diferentes opciones en los comboBox del usuario
-        public List<string> MostrarCiudad()
+        public List<string> MostrarCiudadf()
         {
             List<string> listaCiudad = new List<string>();
             foreach (Alojamiento a in this.getMiAgencia().getAlojamientos())
@@ -1274,25 +1268,15 @@ namespace TP2
 
 
         */
-        public Usuarios UsuarioConectado()
-        {
-            return usuarioConectado;
-        }
-        public List<Alojamiento> SoloCabanas()
-        {
-            List<Alojamiento> cabanas = new List<Alojamiento>();
-            foreach (Alojamiento a in miAgencia.getAlojamientos())
-            {
-                if (a is Cabaña)
-                    cabanas.Add((Alojamiento)a);
-            }
-            return cabanas;
-        }
+
         // estos metodos son para mostrar las diferentes opciones en los comboBox del usuario
         public List<string> MostrarCiudad()
         {
             List<string> listaCiudad = new List<string>();
-            foreach (Alojamiento a in this.getMiAgencia().getAlojamientos())
+            foreach (Cabaña a in misCabanias)
+                listaCiudad.Add(a.getCiudad());
+
+            foreach (Hotel a in misHoteles)
                 listaCiudad.Add(a.getCiudad());
 
             return listaCiudad.Distinct().ToList();
@@ -1338,17 +1322,6 @@ namespace TP2
             return listaCantPersonas;
         }
 
-        public List<Hotel> SoloHoteles()
-        {
-            List<Hotel> hoteles = new List<Hotel>();
-            foreach (Alojamiento a in miAgencia.getAlojamientos())
-            {
-                if (a is Hotel)
-                    hoteles.Add((Hotel)a);
-            }
-            return hoteles;
-        }
-
         public string ValidarUsuarioCrea(string dni)
         {
 
@@ -1363,51 +1336,93 @@ namespace TP2
         {
             string mensaje = "";
 
-            foreach (Usuarios u in misUsuarios)
-            {
-                if (u.getDni() == int.Parse(dni))
+            foreach (Usuarios u in misUsuarios) {
+                if (u.getDni() == int.Parse(dni) && u.getPassword().Equals(pass))
                 {
-                    if (u.getPassword().Equals(pass))
+                    if (!u.getBloqueado())
                     {
-                        if (!u.getBloqueado())
+                        if (u.getEsAdmin())
                         {
-                            if (u.getEsAdmin())
-                            {
-                                mensaje = "true";
-                            }
-                            else
-                            {
-                                mensaje = "false";
-                            }
+                            return "true";
                         }
                         else
                         {
-                            mensaje = "Usuario Bloqueado";
+                            return "false";
                         }
                     }
                     else
                     {
-                        mensaje = "Contraseña invalida";
-                        intentos++;
-                        if (intentos == 3)
-                        {
-                            u.setBloqueado(true);
-                            //GuardarDatosUsuarios();  // hacer update a usuarios para bloquear
-                            intentos = 0;
-                            mensaje = "Se bloqueo el usuario";
-                        }
+                        return "Usuario Bloqueado";
                     }
+                }
+                else if (u.getDni() == int.Parse(dni) && !u.getPassword().Equals(pass))
+                {
+                    mensaje = "Contraseña invalida";
+                    intentos++;
+                    if (intentos == 3)
+                    {
+                        bloquearUsuario(u.getDni());
+                        intentos = 0;
+                        mensaje = "Se bloqueo el usuario";
+                    }
+                    return mensaje;
                 }
                 else
                 {
                     mensaje = "Usuario invalido";
-
                 }
             }
-
-            //EN CASO DE NO VALIDAR DEVUELVE UN USUARIO VACIO
-            return mensaje;
+        return mensaje;
         }
+
+        public bool bloquearUsuario(int Dni)
+        {
+            //primero me aseguro que lo pueda agregar a la base
+            int resultadoQuery;
+            string connectionString = Properties.Resources.connectionString;
+            string queryString = "UPDATE [dbo].[USUARIOS] SET BLOQUEADO=1 WHERE DNI=@dni;";
+            using (SqlConnection connection =
+                new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.Add(new SqlParameter("@dni", SqlDbType.Int));
+                command.Parameters["@dni"].Value = Dni;
+                try
+                {
+                    connection.Open();
+
+                    resultadoQuery = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+            if (resultadoQuery == 1)
+            {
+                try
+                {
+                    //Ahora sí lo MODIFICO en la lista
+                    for (int i = 0; i < misUsuarios.Count; i++)
+                        if (misUsuarios[i].getDni() == Dni)
+                        {
+                            misUsuarios[i].setBloqueado(true);
+                        }
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                //algo salió mal con la query porque no generó 1 registro
+                return false;
+            }
+        }
+
         public bool todosUsuarios(int dni)
         {
 
